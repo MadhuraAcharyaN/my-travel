@@ -1,0 +1,10 @@
+<section class="container my-5">
+  <h2 class="text-center fw-bold mb-4">Top Destinations</h2>
+  <div class="row g-4">
+    @for (item of locationList(); track $index) {
+    <div class="col-sm-6 col-lg-4">
+      <app-location [location]="item" />
+    </div>
+    }
+  </div>
+</section>

@@ -1,0 +1,8 @@
+<app-card>
+  <img [src]="location().imgURL" class="card-img-top" alt="Beach" />
+  <div class="card-body">
+    <h5 class="card-title">{{ location().locationTitle }}</h5>
+    <p class="card-text">{{ location().locationDescription }}</p>
+    <a [routerLink]="['trips', location().id]" class="card-link">View More</a>
+  </div>
+</app-card>

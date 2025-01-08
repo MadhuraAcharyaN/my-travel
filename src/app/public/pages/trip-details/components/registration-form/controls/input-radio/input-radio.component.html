@@ -1,0 +1,19 @@
+@for (option of inputConfig().options; track $index) {
+<div class="form-check form-check-inline">
+  <input
+    type="radio"
+    class="form-check-input"
+    [ngClass]="{ 'btn-check': isButton() }"
+    [value]="option"
+    [id]="inputConfig().key + '-' + option"
+    [name]="inputConfig().key"
+    [formControl]="formControl"
+  />
+  <label
+    [for]="inputConfig().key + '-' + option"
+    class="form-check-label"
+    [ngClass]="{ 'btn btn-outline-secondary': isButton() }"
+    >{{ option }}</label
+  >
+</div>
+}

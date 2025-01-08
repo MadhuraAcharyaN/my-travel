@@ -1,0 +1,10 @@
+<select
+  name=""
+  [id]="inputConfig().key"
+  class="form-select"
+  [formControl]="formControl"
+>
+  @for (option of inputConfig().options; track $index) {
+  <option>{{ option }}</option>
+  }
+</select>

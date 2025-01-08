@@ -1,0 +1,41 @@
+<form [formGroup]="dynamicForm" (ngSubmit)="onSubmit()">
+  @for (item of formObject(); track $index) {
+  <div class="form-group">
+    <!-- dynamic label -->
+    <label [for]="item.key" class="form-label text-capitalize d-block mt-2">{{
+      item.label
+    }}</label>
+
+    <!-- text field -->
+    @if (item.type === 'text' || item.type === 'email') {
+    <app-input-text [inputConfig]="item" [formControlName]="item.key" />
+    } @if(item.type === 'textarea') {
+    <app-input-text-area [inputConfig]="item" [formControlName]="item.key" />
+    } @if (item.type === 'dropdown') {
+    <app-input-dropdown [inputConfig]="item" [formControlName]="item.key" />
+    } @if (item.type === 'radio') {
+    <app-input-radio
+      [inputConfig]="item"
+      [formControlName]="item.key"
+      [isButton]="item.isButton"
+    />
+    }
+  </div>
+
+  }
+
+  <button
+    appButton
+    type="submit"
+    class="btn btn-primary mt-3"
+    [disabled]="dynamicForm.invalid"
+  >
+    @if(hasSubmitted()) {
+    <span
+      class="spinner-border spinner-border-sm"
+      role="status"
+      aria-hidden="true"
+    ></span>
+    Registering... }@else { Submit }
+  </button>
+</form>
