@@ -1,10 +1,25 @@
-<div class="container mt-5">
-  <app-carousel />
+<div class="container pt-5">
+  <!-- <app-carousel /> -->
 
-  @defer (on viewport) {
-  <app-registration-form />
+  <div class="trip-travel">
+    @defer (on viewport) {
+    <div class="trip-travel-mode d-flex w-50 m-auto justify-content-around p-2">
+      @for(mode of travelMode();track $index) {
+      <a
+        class="trip-travel-mode__item text-center"
+        [routerLink]="['./', mode.toLowerCase()]"
+        routerLinkActive="trip-travel-mode__item-selected"
+      >
+        <img [src]="getIcon(mode)()" [alt]="mode" />
+        <h4 class="m-0 mt-2 mb-2">{{ mode }}</h4>
+      </a>
+      }
+    </div>
+    <!-- <app-registration-form /> -->
+    <router-outlet />
 
-  }@placeholder {
-  <app-spinner />
-  }
+    }@placeholder {
+    <app-spinner />
+    }
+  </div>
 </div>

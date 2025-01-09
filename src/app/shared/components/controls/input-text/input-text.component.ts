@@ -7,7 +7,6 @@ import {
   input,
   OnInit,
 } from '@angular/core';
-import { FormObjectModel } from '../../../../model/form-object.model';
 import {
   ControlValueAccessor,
   FormControl,
@@ -15,6 +14,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { FormObjectModel } from '../../../../public/pages/trip-details/model/form-object.model';
 
 @Component({
   selector: 'app-input-text',

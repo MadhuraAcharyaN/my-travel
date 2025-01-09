@@ -13,6 +13,8 @@ export const publicRoutes: Routes = [
       import('./pages/trip-details/trip-details.component').then(
         (c) => c.TripDetailsComponent
       ),
+    loadChildren: () =>
+      import('./pages/trip-details/trip.routes').then((m) => m.tripRoutes),
     resolve: {
       location: locationResolver,
     },

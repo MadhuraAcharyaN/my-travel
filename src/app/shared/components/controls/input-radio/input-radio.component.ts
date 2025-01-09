@@ -1,5 +1,4 @@
 import {
-  ChangeDetectionStrategy,
   Component,
   DestroyRef,
   forwardRef,
@@ -7,7 +6,7 @@ import {
   input,
   OnInit,
 } from '@angular/core';
-import { FormObjectModel } from '../../../../model/form-object.model';
+import { FormObjectModel } from '../../../../public/pages/trip-details/model/form-object.model';
 import {
   ControlValueAccessor,
   FormControl,
@@ -15,31 +14,32 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { NgClass } from '@angular/common';
 
 @Component({
-  selector: 'app-input-text-area',
-  imports: [ReactiveFormsModule],
-  templateUrl: './input-text-area.component.html',
-  styleUrl: './input-text-area.component.scss',
+  selector: 'app-input-radio',
+  imports: [ReactiveFormsModule, NgClass],
+  templateUrl: './input-radio.component.html',
+  styleUrl: './input-radio.component.scss',
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => InputTextAreaComponent),
+      useExisting: forwardRef(() => InputRadioComponent),
       multi: true,
     },
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class InputTextAreaComponent implements ControlValueAccessor, OnInit {
+export class InputRadioComponent implements ControlValueAccessor, OnInit {
   private destroyRef = inject(DestroyRef);
   private onChange = (value: any) => {};
   private onTouched = () => {};
 
-  formControl!: FormControl;
   inputConfig = input.required<FormObjectModel>();
+  isButton = input<boolean>();
+  formControl!: FormControl;
 
   ngOnInit(): void {
-    this.formControl = new FormControl();
+    this.formControl = new FormControl('');
   }
 
   writeValue(obj: any): void {
@@ -51,7 +51,6 @@ export class InputTextAreaComponent implements ControlValueAccessor, OnInit {
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(fn);
   }
-
   registerOnTouched(fn: any): void {
     this.onTouched = fn;
   }

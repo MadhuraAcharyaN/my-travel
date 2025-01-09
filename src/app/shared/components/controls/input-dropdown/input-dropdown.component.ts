@@ -13,7 +13,7 @@ import {
   NG_VALUE_ACCESSOR,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { FormObjectModel } from '../../../../model/form-object.model';
+import { FormObjectModel } from '../../../../public/pages/trip-details/model/form-object.model';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
